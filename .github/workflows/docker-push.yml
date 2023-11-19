@@ -29,13 +29,10 @@ jobs:
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_TOKEN }}
       
-      - name: Use version in subsequent steps
-        run: echo "Version is $APP_VERSION"
-      
       - name: Build and push
         uses: docker/build-push-action@v4
         with:
           context: .  # 这里在项目根目录找Dockerfile构建
           platforms: linux/amd64,linux/arm,linux/arm64
           push: true 
-          tags: hslr/test-docker-build:${{ env.APP_VERSION }},hslr/test-docker-build
+          tags: ${{vars.DOCKERHUB_TAG}}:${{ env.APP_VERSION }}, ${{vars.DOCKERHUB_TAG}}
