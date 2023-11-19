@@ -12,7 +12,7 @@ jobs:
     steps:
       - name: Read version from file
         id: read_version
-        run: echo "::set-output name=VERSION::$(cut -d '|' -f 2 /assets/VERSION)"
+        run: echo "APP_VERSION=$(cut -d '|' -f 2 ./assets/VERSION)" >> $GITHUB_ENV
 
       - name: Checkout
         uses: actions/checkout@v3
@@ -35,4 +35,4 @@ jobs:
           context: .  # 这里在项目根目录找Dockerfile构建
           platforms: linux/amd64,linux/arm,linux/arm64
           push: true 
-          tags: hslr/test-docker-build:${{ steps.read_version.outputs.VERSION }},hslr/sun-panel-docker-build-test 
+          tags: hslr/test-docker-build:$APP_VERSION,hslr/sun-panel-docker-build-test 
