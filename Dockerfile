@@ -7,5 +7,5 @@ RUN go build -o main .
 FROM alpine
 RUN mkdir /app
 WORKDIR /app
-COPY --from=builder /app/hello .
+COPY --from=builder /app/main .
 CMD ["./main"]
