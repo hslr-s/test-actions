@@ -35,4 +35,4 @@ jobs:
           context: .  # 这里在项目根目录找Dockerfile构建
           platforms: linux/amd64,linux/arm,linux/arm64
           push: true 
-          tags: hslr/test-docker-build:${{github.APP_VERSION}},hslr/test-docker-build 
+          tags: hslr/test-docker-build:${{ steps.read_version.outputs.APP_VERSION }},hslr/sun-panel-docker-build-test 
