@@ -8,6 +8,9 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
+        
+      - name: List files in current directory
+        run: ls -R
 
       - name: Read version from file
         id: read_version
