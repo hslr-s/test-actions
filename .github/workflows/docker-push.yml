@@ -28,6 +28,12 @@ jobs:
         with:
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_TOKEN }}
+      
+      - name: Use version in subsequent steps
+        run: echo "Version is $APP_VERSION"
+      
+      - name: Use version in subsequent steps2
+        run: Version1 is $APP_VERSION
 
       - name: Build and push
         uses: docker/build-push-action@v4
