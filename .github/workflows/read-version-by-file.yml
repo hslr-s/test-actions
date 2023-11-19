@@ -11,7 +11,7 @@ jobs:
 
       - name: Read version from file
         id: read_version
-        run: echo "VERSION=$(cut -d '|' -f 2 /assets/VERSION)" >> $GITHUB_ENV
+        run: echo "APP_VERSION=$(cut -d '|' -f 2 /assets/VERSION)" >> $GITHUB_ENV
 
       - name: Use version in subsequent steps
-        run: echo "Version is $VERSION"
+        run: echo "Version is $APP_VERSION"
