@@ -1,25 +1,17 @@
-name: Extract Version
-
+name: Read Version from File
 on:
-  workflow_dispatch:
-  push:
-    branches:
-      - main
+    workflow_dispatch:
 
 jobs:
-  extract_version:
+  read_version:
     runs-on: ubuntu-latest
-
     steps:
-    - name: Checkout repository
-      uses: actions/checkout@v2
+      - name: Checkout code
+        uses: actions/checkout@v2
 
-    - name: Read version from file
-      id: read_version
-      run: |
-        VERSION=$(grep '|' /assets/VERSION | awk -F '|' '{print $2}')
-        echo "::set-output name=version::$VERSION"
+      - name: Read version from file
+        id: read_version
+        run: echo "APP_VERSION=$(cut -d '|' -f 2 ../assets/VERSION)" >> $GITHUB_ENV
 
-    - name: Display version
-      run: |
-        echo "Extracted version: ${{ steps.read_version.outputs.version }}"
+      - name: Use version in subsequent steps
+        run: echo "Version is $APP_VERSION"
