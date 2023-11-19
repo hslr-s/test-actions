@@ -33,7 +33,7 @@ jobs:
         run: echo "Version is $APP_VERSION"
       
       - name: Use version in subsequent steps2
-        run: $APP_VERSION
+        run: echo $APP_VERSION
 
       - name: Build and push
         uses: docker/build-push-action@v4
