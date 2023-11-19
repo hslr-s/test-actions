@@ -8,13 +8,13 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
-        
+
       - name: List files in current directory
         run: ls -R
 
       - name: Read version from file
         id: read_version
-        run: echo "APP_VERSION=$(cut -d '|' -f 2 ../../assets/VERSION)" >> $GITHUB_ENV
+        run: echo "APP_VERSION=$(cut -d '|' -f 2 ./assets/VERSION)" >> $GITHUB_ENV
 
       - name: Use version in subsequent steps
         run: echo "Version is $APP_VERSION"
