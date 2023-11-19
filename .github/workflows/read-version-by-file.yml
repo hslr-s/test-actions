@@ -1,7 +1,6 @@
 name: Read Version from File
 on:
-  workflow_dispatch:
-
+    workflow_dispatch:
 
 jobs:
   read_version:
@@ -12,7 +11,7 @@ jobs:
 
       - name: Read version from file
         id: read_version
-        run: echo "::set-env name=VERSION::$(cut -d '|' -f 2 /assets/VERSION)"
+        run: echo "VERSION=$(cut -d '|' -f 2 /assets/VERSION)" >> $GITHUB_ENV
 
       - name: Use version in subsequent steps
-        run: echo "Version is ${{ env.VERSION }}"
+        run: echo "Version is $VERSION"
